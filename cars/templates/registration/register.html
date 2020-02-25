@@ -1,0 +1,22 @@
+{% extends "cars/index.html" %}
+{% block content %}
+
+<form action="" method="POST">
+    <div class="form-group">
+        <label for="inputAddress">Адрес электронной почты </label>
+        <input type="text" class="form-control" name="mail" placeholder="{{ mail }}" value="{{ car.vin }}">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2"> Имя пользователя </label>
+        <input type="text" class="form-control" name="name" placeholder="{{ name }}" value="{{ car.color }}">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Password</label>
+        <input type="text" class="form-control" name="password" placeholder="{{ password }}" value="{{ car.brand }}">
+    </div>
+    <br/>
+    <input href="/api/v1/auth/users/" class="btn btn-primary" type="submit" value="save" />
+    {% comment %} <input type="submit" class="btn btn-primary"  value="save"/> {% endcomment %}
+    
+</form>
+{% endblock %}

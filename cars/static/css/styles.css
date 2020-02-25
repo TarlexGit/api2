@@ -1,0 +1,13 @@
+.sidebar-nav {
+    height: 60px;
+}
+
+.sidebar-nav li {
+    line-height: 60px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.sidebar-nav li:last-of-type {
+    float: right;
+}

@@ -1,0 +1,36 @@
+{% extends 'cars/index.html' %}
+
+
+{% block content %}
+
+
+{% load rest_framework %}
+<form class="table" metot='get'>
+
+  <table class="table"><h1>Profiles</h1>
+
+    <thead>
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Vin</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Color</th>
+        <th scope="col">Car type</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for c in cars %}
+      <tr>
+          <td>{{ c.user }}</td>
+          <td>{{ c.vin }}</td>
+          <td>{{ c.color }}</td>
+          <td>{{ c.brand }}</td>
+          <td>{{ c.car_type }}</td>
+          <td>{{ c.pk }}</td>
+          <td>{{ c.id }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</frorm>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'cars/index.html' %}
+{% load rest_framework %}
+{% block content %}
+
+<h1>Profile - {{ car.vin }}</h1>
+<table>
+    {{ car.vin }}
+    {{ car.color }}
+    {{ car.brand }}
+    {{ car.car_type }}
+    
+</table>
+
+<form action="" method="POST" >
+    {% csrf_token %}
+    {% comment %} {% render_form serializer %} {% endcomment %}
+    <div class="form-group">
+        <label for="inputAddress">Vin</label>
+        <input type="text" class="form-control" name="vin" placeholder="{{ car.vin }}" value="{{ car.vin }}">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Color</label>
+        <input type="text" class="form-control" name="color" placeholder="{{ car.color }}" value="{{ car.color }}">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Brand</label>
+        <input type="text" class="form-control" name="brand" placeholder="{{ car.brand }}" value="{{ car.brand }}">
+    </div>
+    <label for="inputAddress2">Car-type</label>
+    {% comment %} <input type="number" class="form-control" name="car_type" placeholder="{{ car.car_type }}" value="{{ car.car_type }}"> {% endcomment %}
+    <select id="inputState" class="form-control" name="car_type" >
+        <option value="1">Седан</option>
+        <option value="2">Хэчбек</option>
+        <option value="3">Универсал</option>
+        <option value="4">Купе</option>
+    </select>
+    <br/>
+    <input type="submit" class="btn btn-primary"  value="save"/>
+</form>
+{% endblock %}

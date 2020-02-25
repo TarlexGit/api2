@@ -15,6 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# from . import views
+from rest_framework import urls
+# from .views import redirect_homepage
+
+from cars import urls, views
+from cars.views import cars_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,5 +28,18 @@ urlpatterns = [
     path('api/v1/auth/', include('djoser.urls.authtoken')),
     path('api/v1/base-auth', include('rest_framework.urls')),
     path("api/v1/cars/", include('cars.urls')),
+
+    path('api/v1/', views.cars_index, name='cars_url'),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth_token/', include('djoser.urls.authtoken')),
+
+    path('api/v1/base-auth/', include('rest_framework.urls')),
+    path("api/v1/cars/", include('cars.urls')),
+    path('api/v1/cars/usercars/', views.UserListView, name = 'user_cars'),
 ]
 
+urlpatterns += [
+    path('api/v1/accounts/', include('django.contrib.auth.urls'), name = 'login_url'),
+    # path('api/v1/auth/users/activate/(?P<uid>[\w-]+)/(?P<token>[\w-]+)/$', views.UserActivationView),
+    
+]

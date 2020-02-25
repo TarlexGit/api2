@@ -1,0 +1,50 @@
+{% extends "cars/base_generic.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+{% if next %}
+    {% if user.is_authenticated %}
+        <input href = "{% url 'allCars'%}"/>
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+    {% else %}
+        <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %} 
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <form method="post" action="{% url 'login' %}">{% csrf_token %}
+            <div class="form-group">
+                <table>
+                    <div class="form-group">
+                        <label for="exampleInputLogin">{{ form.username.label_tag }}</label>
+                        <input class="form-control"  placeholder="Enter login" {{ form.username }}
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">{{ form.password.label_tag }}</label>
+                        <input  class="form-control"  placeholder="Password" {{ form.password }}
+                    </div>
+                
+                </table>
+                {% comment %} <input type="submit" value="login" /> {% endcomment %}
+            </div>
+        
+            {# Assumes you setup the password_reset view in your URLconf #}
+            <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+        
+            <input href="{% url 'login' %}" class="btn btn-primary" type="submit" value="login" />
+            <input  type="hidden" name="next" value="{{next}}" />
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
